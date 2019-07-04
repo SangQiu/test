@@ -4,7 +4,7 @@ cd `dirname $0`
 img_mvn="maven:3.3.3-jdk-8"                 # docker image of maven
 m2_cache=~/.m2                              # the local maven cache dir
 proj_home=$PWD                              # the project root dir
-img_output="deepexi/daqiutest"         # output image tag
+img_output="deepexi/daqiu"         # output image tag
 
 git pull  # should use git clone https://name:pwd@xxx.git
 
@@ -14,18 +14,18 @@ docker run --rm \
    -v $proj_home:/usr/src/mymaven \
    -w /usr/src/mymaven $img_mvn mvn clean package -U
 
-sudo mv $proj_home/daqiutest-provider/target/daqiutest-provider-*.jar $proj_home/daqiutest-provider/target/demo.jar # 兼容所有sh脚本
+sudo mv $proj_home/daqiu-provider/target/daqiu-provider-*.jar $proj_home/daqiu-provider/target/demo.jar # 兼容所有sh脚本
 docker build -t $img_output .
 
 mkdir -p $PWD/logs
 chmod 777 $PWD/logs
 
 # 删除容器
-docker rm -f daqiutest &> /dev/null
+docker rm -f daqiu &> /dev/null
 
 version=`date "+%Y%m%d%H"`
 
-spring_datasource_url=jdbc:mysql://localhost:3306/daqiutest?useUnicode=true\&characterEncoding=utf-8\&useSSL=false
+spring_datasource_url=jdbc:mysql://localhost:3306/daqiu?useUnicode=true\&characterEncoding=utf-8\&useSSL=false
 
 # 启动镜像
 docker run -d --restart=always \
@@ -35,7 +35,7 @@ docker run -d --restart=always \
     -w /home \
     -v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro \
     -v $PWD/logs:/home/logs \
-    --name daqiutest deepexi/daqiutest \
+    --name daqiu deepexi/daqiu \
     java \
         -Djava.security.egd=file:/dev/./urandom \
         -Duser.timezone=Asia/Shanghai \

@@ -10,13 +10,13 @@
     </parent>
 
     <groupId>com.deepexi</groupId>
-    <artifactId>daqiutest</artifactId>
+    <artifactId>daqiu</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>daqiutest-api</module>
-        <module>daqiutest-provider</module>
+        <module>daqiu-api</module>
+        <module>daqiu-provider</module>
     </modules>
 
     <repositories>

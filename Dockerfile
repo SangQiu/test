@@ -8,4 +8,4 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # Prepare by downloading dependencies
-COPY daqiutest-provider/target/demo.jar /home/
+COPY daqiu-provider/target/demo.jar /home/
